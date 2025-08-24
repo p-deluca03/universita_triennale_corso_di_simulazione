@@ -17,9 +17,3 @@ MM1queue <- function(n, rho, seme) {
   N <- floor(w)                            # prendo la parte intera
   return(N)
 }
-
-# Esempio:
-utenti <- MM1queue(1000, 0.6, 7)        # simulazione con ρ = 0.6
-mean(utenti)                            # media campionaria (~1.525)
-table(utenti)                           # frequenze assolute
-round(table(utenti)/length(utenti), 3)  # frequenze relative

@@ -49,22 +49,3 @@ arrivipartenze <- function(n, lambda, mu, seme) {
   
   return(df)
 }
-
-# ============================
-# ESEMPIO DI UTILIZZO
-# ============================
-
-# Parametri: n=10 utenti, λ=2, μ=4, seme=3
-risultato <- arrivipartenze(10, 2, 4, 3)
-
-# Visualizziamo i risultati
-print(risultato)
-
-# ============================
-# OSSERVAZIONE TEORICA
-# ============================
-
-# Avendo scelto λ = 2 e μ = 4, il sistema M/M/1 non si congestiona
-# al crescere del tempo poiché il coefficiente di utilizzazione è:
-#     ρ = λ / μ = 2 / 4 = 1/2 = 0.5
-# Essendo ρ < 1, il sistema è stabile e non esplode.

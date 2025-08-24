@@ -23,25 +23,3 @@ MM2queueBis <- function(n, rho2, seme) {
   # genera osservazioni
   return(N)
 }
-
-# Esempio di utilizzo:
-utentiBis <- MM2queueBis(1000, 0.8, 3)
-
-# Media campionaria
-mean(utentiBis)   # ≈ 4.53 (vicina al valore teorico 4.444)
-
-# Frequenze assolute
-table(utentiBis)
-
-# Frequenze relative (arrotondate a 3 cifre decimali)
-round(table(utentiBis) / length(utentiBis), 3)
-
-
-# --- Spiegazione ---
-# Con ρ2 = 0.8:
-# - la media teorica è E(N) = 4.444
-# - la media campionaria simulata ≈ 4.53
-#
-# La probabilità di avere 0 utenti nel sistema è:
-#   q0 = (1 - ρ2) / (1 + ρ2) = 0.111
-# mentre la probabilità simulata risulta molto vicina (~0.11).

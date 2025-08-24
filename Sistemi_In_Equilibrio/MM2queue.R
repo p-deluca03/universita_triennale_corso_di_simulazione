@@ -22,29 +22,3 @@ MM2queue <- function(n, rho2, seme) {
   return(N)                                          
   # restituisce la sequenza
 }
-
-# Esempio di utilizzo:
-utenti <- MM2queue(1000, 0.8, 3)   # simuliamo con ρ2 = 0.8
-mean(utenti)                       # media campionaria (~4.619)
-
-# Media teorica:
-# E(N) = (2 * 0.8) / (1 - 0.8^2) = 1.6 / 0.36 ≈ 4.444
-
-# Frequenze assolute del numero di utenti
-table(utenti)
-
-# Frequenze relative (approssimate a 3 cifre decimali)
-round(table(utenti) / length(utenti), 3)
-
-
-# --- Spiegazione ---
-# La media campionaria ottenuta (≈ 4.619) è vicina 
-# al valore teorico (4.444).
-#
-# La funzione table() calcola le frequenze assolute,
-# mentre table()/length() calcola le frequenze relative.
-#
-# Ad esempio, per ρ2 = 0.8:
-# - probabilità simulata di avere 0 utenti ≈ 0.106
-# - probabilità teorica:
-# q0 = (1 - ρ2) / (1 + ρ2) = (1 - 0.8) / (1 + 0.8) = 0.111

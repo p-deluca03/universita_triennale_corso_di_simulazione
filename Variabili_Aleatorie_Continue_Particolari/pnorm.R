@@ -1,2 +1,1 @@
 pnorm (3, mean =0, sd =1) - pnorm (-3, mean =0, sd =1)
-# [1] 0.9973002

@@ -52,36 +52,3 @@ attesaME21 <- function(n, lambda, mu, seme) {
   
   return(df)
 }
-
-# ============================
-# ESEMPIO (come nel testo)
-# ============================
-# n=10, λ=2, μ=4, seme=3
-print(attesaME21(10, 2, 4, 3))
-
-# Osservazione: con gli stessi E[T]=1/λ e E[S]=1/μ di M/M/1,
-# i tempi di attesa medi sono minori in M/E2/1
-# (servizio meno variabile).
-
-# ============================
-# Confronto teorico vs simulazione (n=5000)
-# ============================
-
-# Caso 1: λ=2, μ=4  (ρ=0.5)  — sistema stabile
-# Attesi: E[S]=0.25, E[Q]=0.1875, E[W]=0.4375
-cm1_ME21 <- colMeans(attesaME21(5000, 2, 4, 3))
-print(cm1_ME21)
-
-# Caso 2: λ=2, μ=6  (ρ≈0.333) — più veloce, attese minori
-# Attesi: E[S]=1/6≈0.1667, E[Q]=3λ/(4 μ^2 (1-ρ))≈0.0625, E[W]≈0.2292
-cm2_ME21 <- colMeans(attesaME21(5000, 2, 6, 3))
-print(cm2_ME21)
-
-# Caso 3: λ=2, μ=1  (ρ=2) — instabile: la coda esplode (congestione)
-cm3_ME21 <- colMeans(attesaME21(5000, 2, 1, 3))
-print(cm3_ME21)
-
-# Nota finale: per evitare congestione in M/M/s
-# (e analoghi con stesso E[S]),
-# serve s tale che  s - 1 < λ/μ < s.
-# Con λ=2, μ=1 ⇒ servono s=3 server in parallelo.

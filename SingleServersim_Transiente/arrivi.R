@@ -35,13 +35,3 @@ arrivi <- function(n, lambda, seme) {
   
   return(df)
 }
-
-## -----------------------------
-## Esempio di utilizzo
-## -----------------------------
-## Scegliamo λ = 2, seme = 3, n = 10
-## Otteniamo i primi 10 tempi di arrivo
-## e il numero cumulativo di arrivi fino a ciascun tempo
-
-risultato <- arrivi(n = 10, lambda = 2, seme = 3)
-print(risultato)

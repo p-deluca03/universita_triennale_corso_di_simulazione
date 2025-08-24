@@ -26,6 +26,3 @@ Ugcm <- function(N, x0, a, m) {
   y <- y / m
   return(c(y))
 }
-
-# Esempio di utilizzo:
-Ugcm(8, 1, 3, 2^5)

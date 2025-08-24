@@ -9,9 +9,3 @@ MM1queueBis <- function(n, rho, seme) {
   N <- rgeom(n, 1 - rho)   # generazione con distribuzione geometrica
   return(N)
 }
-
-# Esempio:
-utentiBis <- MM1queueBis(1000, 0.6, 7)
-mean(utentiBis) # media campionaria (~1.523)
-table(utentiBis)
-round(table(utentiBis)/length(utentiBis), 3)
