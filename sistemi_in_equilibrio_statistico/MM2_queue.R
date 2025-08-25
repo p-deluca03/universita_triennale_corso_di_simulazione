@@ -1,4 +1,4 @@
-# Funzione MM2queue: simulazione del numero di
+# Funzione MM2_queue: simulazione del numero di
 # utenti in un sistema M/M/2
 # Parametri:
 # - n     : numero di osservazioni da generare
@@ -10,7 +10,7 @@
 # una distribuzione geometrica modificata, e il valore atteso è:
 #   E(N) = (2 * ρ2) / (1 - ρ2^2)
 
-MM2queue <- function(n, rho2, seme) {
+MM2_queue <- function(n, rho2, seme) {
   set.seed(seme)                                     
   # imposta il seme
   u <- runif(n)                                      

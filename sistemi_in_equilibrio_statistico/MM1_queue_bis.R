@@ -4,7 +4,7 @@
 # Per M/M/1 in equilibrio, il numero di utenti è
 # distribuito geometricamente con parametro (1 - ρ).
 
-MM1queueBis <- function(n, rho, seme) {
+MM1_queue_bis <- function(n, rho, seme) {
   set.seed(seme)           # imposto il seme
   N <- rgeom(n, 1 - rho)   # generazione con distribuzione geometrica
   return(N)

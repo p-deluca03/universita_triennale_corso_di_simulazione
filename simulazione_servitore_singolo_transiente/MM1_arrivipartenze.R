@@ -7,7 +7,7 @@
 # Restituisce i tempi di arrivo (t_A) e di partenza (t_P)
 # per n utenti in un sistema M/M/1.
 # ----------------------------------------------------------
-arrivipartenze <- function(n, lambda, mu, seme) {
+MM1_arrivipartenze <- function(n, lambda, mu, seme) {
   set.seed(seme);   u <- runif(n)     # inter-arrivi ~ Exp(lambda)
   set.seed(seme+2); v <- runif(n)     # servizi     ~ Exp(mu)
   

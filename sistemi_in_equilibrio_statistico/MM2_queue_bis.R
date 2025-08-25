@@ -1,4 +1,4 @@
-# Funzione MM2queueBis: simulazione alternativa per il sistema M/M/2
+# Funzione MM2_queue_bis: simulazione alternativa per il sistema M/M/2
 # usando la funzione predefinita rgeom di R.
 #
 # Parametri:
@@ -14,7 +14,7 @@
 # Valore atteso teorico:
 #   E(N) = (2 * ρ2) / (1 - ρ2^2)
 
-MM2queueBis <- function(n, rho2, seme) {
+MM2_queue_bis <- function(n, rho2, seme) {
   set.seed(seme)                                    
   # imposta il seme
   p <- (1 - rho2) / (1 + rho2)                      

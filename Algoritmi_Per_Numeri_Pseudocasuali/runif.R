@@ -17,4 +17,4 @@
 
 set.seed(seme) # imposta il seme del generatore
 runif(n, min = a, max = b) # genera n numeri casuali uniformi
-# nell'intervallo (a, b)
+                           # nell'intervallo (a, b)

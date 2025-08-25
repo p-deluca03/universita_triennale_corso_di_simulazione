@@ -1,4 +1,4 @@
-# Funzione MM1queue: sim. del numero di utenti nel sistema M/M/1
+# Funzione MM1_queue: sim. del numero di utenti nel sistema M/M/1
 # Parametri:
 # - n    : lunghezza della sequenza da generare
 # - rho  : tasso di utilizzazione (ρ = λ/μ, con λ < μ)
@@ -10,7 +10,7 @@
 #   P(N = k) = (1 - ρ) * ρ^k
 # con valore atteso E(N) = ρ / (1 - ρ).
 
-MM1queue <- function(n, rho, seme) {
+MM1_queue <- function(n, rho, seme) {
   set.seed(seme)                           # imposto il seme
   u <- runif(n)                            # genero n numeri uniformi
   w <- log(1 - u) / log(rho)               # trasformazione inversa

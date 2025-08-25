@@ -14,7 +14,7 @@
 #   E[W]   = E[S] + E[Q]
 ############################################################
 
-attesaME21 <- function(n, lambda, mu, seme) {
+ME21_attesa <- function(n, lambda, mu, seme) {
   # flusso per inter-arrivi
   set.seed(seme);   u  <- runif(n)
   

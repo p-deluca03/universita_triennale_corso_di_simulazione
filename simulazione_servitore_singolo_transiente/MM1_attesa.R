@@ -5,7 +5,7 @@
 #   Q = tempi di permanenza in coda (attesa "pura"),
 #   W = tempo di attesa nel sistema (sojourn time = Q + S).
 # ----------------------------------------------------------
-attesa <- function(n, lambda, mu, seme) {
+MM1_attesa <- function(n, lambda, mu, seme) {
   set.seed(seme);   u <- runif(n)        # inter-arrivi
   set.seed(seme+2); v <- runif(n)        # servizi
   
