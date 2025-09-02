@@ -1,68 +1,54 @@
 ############################################################
 # Parametri del sistema
 ############################################################
-n      <- 20       # numero clienti simulati
-lambda <- 1.2      # tasso di arrivo
-mu     <- 2        # tasso di servizio
-seme   <- 42       # seme randomico
-rho    <- lambda/mu  # intensità di traffico
-
-cat("\nIntensità di traffico ρ = ", rho, "\n")
+n <- 500; lambda <- 1.2; mu <- 2; seme <- 42
+rho <- lambda / mu
+cat("\nIntensità di traffico teorica ρ = ", rho, "\n")
 
 ############################################################
-# Costruzione tabella e statistiche descrittive
+# Esecuzione simulazione
 ############################################################
-tabella_esame <- tabella_esame(n, lambda, mu, seme)
+out <- tabella_esame(n, lambda, mu, seme)
 
-# Visualizza tabella in scheda
-View(tabella_esame)
+# --- Tabella e statistiche sulla tabella ---
+df <- out$data
+View(df)
 
-# Medie, varianze, deviazioni standard, coefficienti di variazione
-medie <- apply(tabella_esame, 2, mean)
-varianze <- apply(tabella_esame, 2, var)
-devst <- apply(tabella_esame, 2, sd)
-cv <- devst / medie
-cv_perc <- cv * 100
+medie    <- apply(df, 2, mean)
+varianze <- apply(df, 2, var)
+devst    <- apply(df, 2, sd)
+cv       <- devst / medie
+cv_perc  <- 100 * cv
 
 cat("\n=== Medie campionarie ===\n"); print(medie)
 cat("\n=== Varianze campionarie ===\n"); print(varianze)
-cat("\n=== Deviazioni standard campionarie ===\n"); print(devst)
-cat("\n=== Coefficienti di variazione (CV = sd/mean) ===\n"); print(cv)
-cat("\n=== Coefficienti di variazione in percentuale (CV%) ===\n"); print(cv_perc)
+cat("\n=== Deviazioni standard ===\n"); print(devst)
+cat("\n=== Coeff. di variazione (%) ===\n"); print(cv_perc)
+
+# --- Numeri medi e tassi effettivi ---
+s <- out$stats
+cat("\n=== Stime temporali e tassi effettivi ===\n")
+cat("T_sim: ", s$T_sim, "\n")
+cat("L  (sistema):  ", s$L,  "\n")
+cat("Lq (coda):     ", s$Lq, "\n")
+cat("Ls (servizio): ", s$Ls, "\n")
+cat("lambda_eff:    ", s$lambda_eff, "\n")
+cat("mu_eff:        ", s$mu_eff, "\n")
+cat("rho_eff:       ", s$rho_eff, "  (confronta con Ls ≈ utilizzo)\n")
 
 ############################################################
-# Grafico del numero di utenti nel sistema
+# Grafici con colori
 ############################################################
-tempiarrivi   <- tabella_esame$A
-tempipartenze <- tabella_esame$U
+eventi   <- out$eventi$timeline
+n_state  <- out$eventi$n_state
+q_state  <- out$eventi$q_state
 
-# Costruzione lista eventi
-eventi <- data.frame(
-  tempo = c(tempiarrivi, tempipartenze),
-  tipo  = c(rep("A", length(tempiarrivi)), rep("P", length(tempipartenze)))
-)
-eventi <- eventi[order(eventi$tempo), ]
-eventi <- rbind(data.frame(tempo=0, tipo="I"), eventi)
-
-# Calcolo n(t) = utenti nel sistema
-n <- numeric(nrow(eventi))
-count <- 0
-for (i in 1:nrow(eventi)) {
-  if (eventi$tipo[i]=="A") count <- count+1
-  if (eventi$tipo[i]=="P") count <- count-1
-  n[i] <- count
-}
-
-# Plot n(t)
-plot(eventi$tempo, n, type="s", col="red",
+plot(eventi$tempo, n_state, type="s",
      xlab="Tempo", ylab="Numero utenti nel sistema",
-     main="Evoluzione del numero di utenti nel sistema")
+     main="Evoluzione del numero di utenti nel sistema",
+     col="red", lwd=2); grid(col="gray", lty="dotted")
 
-############################################################
-# Grafico del numero di utenti in coda
-############################################################
-q <- ifelse(n > 0, n - 1, 0)
-
-plot(eventi$tempo, q, type="s", col="blue",
+plot(eventi$tempo, q_state, type="s",
      xlab="Tempo", ylab="Numero utenti in coda",
-     main="Evoluzione del numero di utenti in fila di attesa")
+     main="Evoluzione del numero di utenti in fila di attesa",
+     col="blue", lwd=2); grid(col="gray", lty="dotted")
