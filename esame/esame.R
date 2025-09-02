@@ -17,14 +17,18 @@ tabella_esame <- tabella_esame(n, lambda, mu, seme)
 # Visualizza tabella in scheda
 View(tabella_esame)
 
-# Medie, varianze, deviazioni standard
+# Medie, varianze, deviazioni standard, coefficienti di variazione
 medie <- apply(tabella_esame, 2, mean)
 varianze <- apply(tabella_esame, 2, var)
 devst <- apply(tabella_esame, 2, sd)
+cv <- devst / medie
+cv_perc <- cv * 100
 
 cat("\n=== Medie campionarie ===\n"); print(medie)
 cat("\n=== Varianze campionarie ===\n"); print(varianze)
 cat("\n=== Deviazioni standard campionarie ===\n"); print(devst)
+cat("\n=== Coefficienti di variazione (CV = sd/mean) ===\n"); print(cv)
+cat("\n=== Coefficienti di variazione in percentuale (CV%) ===\n"); print(cv_perc)
 
 ############################################################
 # Grafico del numero di utenti nel sistema
